@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    
+</head>
+<body>
+    <script>
+        var dateelement=document.createElement('input');
+dateelement.setAttribute('type','date');
+dateelement.setAttribute('id','date');
+document.body.append(dateelement);
+
+var button=document.createElement('button');
+button.innerHTML='display data';
+button.className="btn btn-primary";
+button.setAttribute('type','button');
+button.addEventListener('click',displaydata);
+document.body.append(button);
+
+var p=document.createElement('p');
+var br=document.createElement('br');
+document.body.append(p);
+
+
+function displaydata(){
+    let input=document.getElementById("date").value;
+    if(Date.parse(input)){
+        var inputdate=new Date(input);
+        var currentdate= new Date();
+        var millisec=currentdate.getTime()-inputdate.getTime();
+       // console.log(millisec);
+    var seconddiff=Math.floor(millisec/1000);
+    //console.log(seconddiff);
+    
+    var minutediff=Math.floor(seconddiff/60);
+    //console.log(minutediff);
+    var hoursdiff=Math.floor(minutediff/60);
+    //console.log(hoursdiff);
+
+    var daydiff=Math.floor(hoursdiff/24);
+    //console.log(daydiff);
+
+    var yeardiff=currentdate.getFullYear()-inputdate.getFullYear();
+    //console.log(yeardiff);
+
+      //console.log(currentdate.getMonth());
+    var monthdiff=(yeardiff*12)+(currentdate.getMonth()-inputdate.getMonth());
+    //console.log(monthdiff);
+    var display = `second is ${seconddiff} <br> minute ${minutediff} <br> hour ${hoursdiff} <br> Day ${daydiff} <br> year ${yeardiff}<br>month ${monthdiff} `;
+    document.querySelector('p').innerHTML=display;
+   }
+   else{
+    // console.log("give a proper valid date")  
+   }
+
+}
+    </script>
+    
+
+
+   
+  
+  
+</body>
+</html>
